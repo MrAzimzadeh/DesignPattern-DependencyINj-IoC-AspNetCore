@@ -1,20 +1,24 @@
 ﻿using Dependency_Injection_AspNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Dependency_Injection_AspNetCore.Services.Interface;
 
 namespace Dependency_Injection_AspNetCore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        //private readonly ILog _log;
 
-        public IActionResult Index()
+        //public HomeController(ILog log)
+        //{
+        //    _log = log;
+        //}
+
+        public IActionResult Index([FromServices] ILog log) // action bazli dependency injection da IoC Containerinden melumat getititik 
         {
+            //_log.Log();
+            log.Log();
             return View();
         }
 
